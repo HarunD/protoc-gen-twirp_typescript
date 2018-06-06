@@ -41,6 +41,10 @@ const {{.Name}}ToJSON = (m: {{.Name}}): {{.Name}}JSON => {
 
 {{if .CanUnmarshal}}
 const JSONTo{{.Name}} = (m: {{.Name}}JSON): {{.Name}} => {
+	if(!m) {
+		return <{{.Name}}>{};
+	}
+
     return {
         {{range .Fields -}}
         {{.Name}}: {{parse .}},
