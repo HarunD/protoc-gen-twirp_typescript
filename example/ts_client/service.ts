@@ -20,6 +20,10 @@ interface HatJSON {
 
 
 const JSONToHat = (m: HatJSON): Hat => {
+	if(!m) {
+		return <Hat>{};
+	}
+
     return {
         size: m.size,
         color: m.color,

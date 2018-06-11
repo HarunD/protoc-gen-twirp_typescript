@@ -9,7 +9,7 @@ LDFLAGS := -ldflags "-X main.Timestamp=${TIMESTAMP} -X main.Commit=${COMMIT} -X 
 all: clean test install
 
 install:
-	go install ${LDFLAGS} go.larrymyers.com/protoc-gen-twirp_typescript
+	go install ${LDFLAGS} github.com/harund/protoc-gen-twirp_typescript
 
 test:
 	go test -v ./...
@@ -22,7 +22,7 @@ run: install
 	protoc --proto_path=${GOPATH}/src:. --twirp_out=. --go_out=. --twirp_typescript_out=package_name=haberdasher:./example/ts_client ./example/service.proto
 
 build_linux:
-	GOOS=linux GOARCH=amd64 go build -o ${BINARY} ${LDFLAGS} go.larrymyers.com/protoc-gen-twirp_typescript
+	GOOS=linux GOARCH=amd64 go build -o ${BINARY} ${LDFLAGS} github.com/harund/protoc-gen-twirp_typescript
 
 clean:
 	-rm -f ${GOPATH}/bin/${BINARY}
